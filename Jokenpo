@@ -1,0 +1,66 @@
+import tkinter as tk
+import random
+
+
+def joga_papel():
+    ent_resultado["text"] = f"{'Papel'}"
+
+def joga_pedra():
+    ent_resultado["text"] = f"{'Pedra'}"
+
+def joga_tesoura():
+    ent_resultado["text"] = f"{'Tesoura'}"
+
+
+def jogar():
+    aleat = random.randint(0, 2)
+    if aleat == 0 and ent_resultado["text"] == f"{'Tesoura'}":
+        lbl_vencedor["text"] = f"O computador escolheu: {'Papel'} - Você ganhou!"
+
+    elif aleat == 1 and ent_resultado["text"] == f"{'Papel'}":
+        lbl_vencedor["text"] = f"O computador escolheu: {'Pedra'} - Você ganhou!"
+
+    elif aleat == 2 and ent_resultado["text"] == f"{'Pedra'}":
+        lbl_vencedor["text"] = f"O computador escolheu: {'Tesoura'} - Você ganhou!"
+
+    elif aleat == 0 and ent_resultado["text"] == f"{'Pedra'}":
+        lbl_vencedor["text"] = f"O computador escolheu: {'Papel'} - Você Perdeu!"
+
+    elif aleat == 1 and ent_resultado["text"] == f"{'Tesoura'}":
+        lbl_vencedor["text"] = f"O computador escolheu: {'Pedra'} - Você Perdeu!"
+
+    elif aleat == 2 and ent_resultado["text"] == f"{'Papel'}":
+        lbl_vencedor["text"] = f"O computador escolheu: {'Tesoura'} - Você Perdeu!"
+
+
+
+window = tk.Tk()
+window.geometry("800x400+500+100")
+window.title("Jokenpo")
+window.rowconfigure([0,1,2,3], minsize=100, weight=1)
+window.columnconfigure([0,1,2], minsize=100, uniform=120, weight=1)
+
+
+
+# Era par ser lbl_resultado - preguiça de mudar
+ent_resultado = tk.Label(master=window, text="Sua escolha:", font="Arial, 30")
+ent_resultado.grid(row=0, column=1, sticky="nsew")
+
+lbl_vencedor = tk.Label(master=window, text="Jogando", font="Arial, 20", wraplength=250, justify="center")
+lbl_vencedor.grid(row=3, column=1, sticky="nsew")
+
+btn_jogar = tk.Button(master=window, text="Jogar", width=4, height=2, font="Arial, 35", command=jogar, bg="lightblue", relief=tk.RAISED)
+btn_jogar.grid(row=2, column=1, padx=5, pady=5, sticky="nsew")
+
+btn_pedra = tk.Button(master=window, text="Pedra", width=4, height=2, font="Arial, 35", command=joga_pedra, bg="black", fg="lightgrey", relief=tk.RAISED)
+btn_pedra.grid(row=1, column=0, padx=5, pady=5, sticky="nsew")
+
+btn_papel = tk.Button(master=window, text="Papel", width=4, height=2, font="Arial, 35", command=joga_papel, bg="black", fg="lightgrey", relief=tk.RAISED)
+btn_papel.grid(row=1, column=1, padx=5, pady=5, sticky="nsew")
+
+btn_tesoura = tk.Button(master=window, text="Tesoura", width=4, height=2, font="Arial, 35", command=joga_tesoura, bg="black", fg="lightgrey", relief=tk.RAISED)
+btn_tesoura.grid(row=1, column=2, padx=5, pady=5, sticky="nsew")
+
+
+
+window.mainloop()
