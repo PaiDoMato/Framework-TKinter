@@ -1,0 +1,21 @@
+import random
+import tkinter as tk
+
+def jogar():
+    lbl_resultado["text"] = f"{random.randint(1,6)}"
+
+window = tk.Tk()
+window.title("Dado")
+
+window.rowconfigure([0,1], minsize=50, weight=1)
+window.columnconfigure(0, minsize=100, weight=1)
+
+btn_jogar = tk.Button(master=window, text="Jogar", bg="black", fg="white", command=jogar)
+btn_jogar.grid(row=0, sticky="nsew")
+
+lbl_resultado= tk.Label(master=window, text="0")
+lbl_resultado.grid(row=1, sticky="nsew")
+
+
+
+window.mainloop()
